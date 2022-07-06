@@ -7,19 +7,6 @@ function mypage() {
   const [posts, setPosts] = useState([]);
   const [uid, setUid] = useState(null);
 
-  // const getOrCreateUid = () => {
-  //   let uid = localStorage.getItem("uid");
-  //   if (uid) {
-  //     setUserId(uid);
-  //     return;
-  //   }
-
-  //   uid = ObjectID();
-  //   localStorage.setItem("uid", uid);
-  //   setUserId(uid);
-  //   return;
-  // };
-
   const fetchPosts = async () => {
     const uid = await localStorage.getItem("uid");
 
@@ -30,7 +17,6 @@ function mypage() {
         setPosts(response.data.posts);
       })
       .catch((error) => {
-        alert(`${process.env.HOST}/api/posts${uid ? `?uid=${uid}` : ""}`);
         console.log(error);
       });
   };
