@@ -34,7 +34,7 @@ function OptionBoxInput({ type, index, options, handleOptionsChange }) {
             이미지 캡션
           </div>
           {type == "image" ? (
-            <div className="text-gray-500">* 선택사항</div>
+            <div className="text-gray-500">(선택사항)</div>
           ) : null}
         </div>
 

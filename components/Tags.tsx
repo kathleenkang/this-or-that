@@ -11,7 +11,6 @@ import axios from "axios";
 const theme = createTheme({
   palette: {
     primary: {
-      // main: "#ff7961",
       main: "rgb(22 163 74)",
     },
     background: {
@@ -44,7 +43,6 @@ export default function Tags({ tags, setTags }) {
           multiple
           id="tags-filled"
           options={options}
-          // getOptionLabel={(option) => option.title || option}
           freeSolo
           renderTags={(value: readonly string[], getTagProps) =>
             value.map((option: string, index: number) => (
@@ -56,7 +54,6 @@ export default function Tags({ tags, setTags }) {
             ))
           }
           sx={{
-            // background: "#e5e7eb",
             background: "rgb(243 244 246)",
             borderRadius: "15px 15px 0px 0px",
             "& .MuiFilledInput-root": {
@@ -77,7 +74,6 @@ export default function Tags({ tags, setTags }) {
                   : ""
               }
               sx={{
-                // background: "#e5e7eb",
                 background: "rgb(243 244 246)",
                 borderRadius: "15px 15px 0px 0px",
               }}
@@ -93,46 +89,3 @@ export default function Tags({ tags, setTags }) {
     </ThemeProvider>
   );
 }
-
-// export default function Tags({ tags, setTags }) {
-//   const [showPlaceholder, setShowPlaceholder] = useState(true);
-
-//   return (
-//     <Stack spacing={3} sx={{ width: "100%" }}>
-//       <Autocomplete
-//         multiple
-//         id="tags-filled"
-//         options={commonTags}
-//         freeSolo
-//         renderTags={(value: readonly string[], getTagProps) =>
-//           value.map((option: string, index: number) => (
-//             <Chip
-//               variant="outlined"
-//               label={option}
-//               {...getTagProps({ index })}
-//             />
-//           ))
-//         }
-//         renderInput={(params) => (
-//           <TextField
-//             {...params}
-//             variant="filled"
-//             label="# 태그 (선택사항)"
-//             placeholder={
-//               showPlaceholder
-//                 ? "키워드 입력 후 Enter 키를 누르면 태그가 생성됩니다"
-//                 : ""
-//             }
-//           />
-//         )}
-//         onChange={(event, values) => {
-//           setTags(values);
-//           setShowPlaceholder(false);
-//         }}
-//         defaultValue={tags}
-//       />
-//     </Stack>
-//   );
-// }
-
-// const commonTags = ["밸런스게임", "패션", "사진", "쇼핑", "오늘뭐먹지?"];
