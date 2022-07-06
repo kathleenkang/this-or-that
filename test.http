@@ -1,0 +1,22 @@
+GET http://localhost:3000/api/tags
+
+
+# POST http://localhost:3000/api/posts HTTP/1.1
+# content-type: application/json
+
+
+# POST http://localhost:3000/api/posts HTTP/1.1
+# content-type: application/json
+
+# {
+#     "title": "test post",
+#     "type": "text",
+#     "options": [
+#       {
+#         "caption": "option 1"
+#       },
+#       {
+#         "caption": "option 2"
+#       }
+#     ]
+# }

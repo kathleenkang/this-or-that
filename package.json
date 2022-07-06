@@ -6,9 +6,23 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/material": "^5.8.4",
+    "@yaireo/tagify": "^4.12.0",
+    "animejs": "^3.2.1",
+    "axios": "^0.27.2",
+    "bson-objectid": "^2.0.3",
+    "express": "^4.18.1",
+    "framer-motion": "^6.3.11",
+    "image-resize": "^1.2.7",
+    "mongoose": "^6.3.6",
     "next": "latest",
+    "next-connect": "^0.12.2",
+    "next-s3-upload": "^0.2.2",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "sweetalert2": "^11.4.17"
   },
   "devDependencies": {
     "@types/node": "17.0.35",
