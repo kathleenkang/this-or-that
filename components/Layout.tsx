@@ -15,7 +15,6 @@ function Layout({ children }) {
         />
       </Head>
       <Header />
-      {/* <div className="px-8 py-6 max-w-7xl mx-auto my-5 md:py-8">{children}</div> */}
       <div className="px-8 py-6 max-w-7xl mx-auto md:py-8">{children}</div>
     </>
   );

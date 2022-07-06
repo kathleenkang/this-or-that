@@ -22,9 +22,6 @@ function OptionBoxInput({ type, index, options, handleOptionsChange }) {
           index={index}
           handleOptionsChange={handleOptionsChange}
           imageUrl={options[index]["imageUrl"]}
-          // handleImageChange={(newFile) => {
-          //   handleOptionsChange(index, "file", newFile);
-          // }}
         />
       ) : null}
       <div>
@@ -37,7 +34,6 @@ function OptionBoxInput({ type, index, options, handleOptionsChange }) {
             이미지 캡션
           </div>
           {type == "image" ? (
-            // <div className="text-right text-gray-500">*optional</div>
             <div className="text-gray-500">* 선택사항</div>
           ) : null}
         </div>

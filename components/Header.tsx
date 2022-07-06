@@ -21,7 +21,6 @@ function Header() {
               <Link href="/">
                 <a>
                   <Image src={logoImg} />
-                  {/* <img src={logoImg} /> */}
                 </a>
               </Link>
             </div>

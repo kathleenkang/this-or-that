@@ -9,10 +9,8 @@ import { useRouter } from "next/router";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Speechbubble from "./speechbubble";
 
 function Post({ post, isNew }) {
-  // const [selectedIndex, setSelectedIndex] = useState(null);
   const [myPost, setMyPost] = useState(post);
   const [successMsg, setSuccessMsg] = useState(false);
   const [userId, setUserId] = useState(null);
@@ -59,21 +57,6 @@ function Post({ post, isNew }) {
   };
 
   const router = useRouter();
-
-  // const deletePost = (e) => {
-  //   e.preventDefault();
-  //   axios.delete(`/api/posts/${myPost._id}`).then((response) => {
-  //     console.log(response);
-  //     console.log("deleted!");
-  //     // router.push("/");
-  //     // window.location.reload();
-  //     if (router.asPath == "/") {
-  //       window.location.reload();
-  //     } else {
-  //       router.push("/");
-  //     }
-  //   });
-  // };
 
   const [modalOpen, setModalOpen] = React.useState(false);
 
@@ -152,19 +135,6 @@ function Post({ post, isNew }) {
 
   const [disabled, setDisabled] = useState(false);
 
-  // if (sameUser) {
-  //   setDisabled(true);
-  // }
-
-  // const onClick = (index) => {
-  //   if (selectedIndex == index) {
-  //     unvote();
-  //     return;
-  //   }
-
-  //   vote(index);
-  // };
-
   const renderTags = () => {
     return myPost.tags.map((tag, i) => (
       <Link
@@ -192,77 +162,6 @@ function Post({ post, isNew }) {
       );
     }
   };
-
-  // const SpeechBubble = (text) => {
-  //   const css = `
-  //   .speechbubble {margin: 0px auto;
-  //   padding: 7px 10px;
-  //   // color: #f97316;
-  //   color: #22c55e;
-  //   font-size: 16px;
-  //   font-weight: 500;
-  //   position: relative;
-  //   width: 160px;
-  //   text-align: center;
-  //   background-color: #fff;
-  //   border: 8px solid #FFA500;
-  //   // border: 8px solid #22c55e;
-  //   // border: 8px solid #f97316;
-  //   border-radius: 30px;
-  //   // box-shadow: 1px 1px 4px #888;
-  // }
-
-  //   .speechbubble:before {
-  //     content: '';
-  //     position: absolute;
-  //     top: 0;
-  //     left: 50%;
-  //     width: 0;
-  //     height: 0;
-  //     border: 20px solid transparent;
-  //     border-bottom-color: #FFA500;
-  //     // border-bottom-color: #22c55e;
-  //     // border-bottom-color: #f97316;
-  //     border-top: 0;
-  //     margin-left: -20px;
-  //     margin-top: -20px;
-  //   }
-
-  //   .speechbubble:after {
-  //     content: '';
-  //     position: absolute;
-  //     top: 2%;
-  //     left: 43%;
-  //     width: 0;
-  //     height: 0;
-  //     border: 20px solid transparent;
-  //     border-bottom-color: #fff;
-  //     border-top: 0;
-  //     margin-left: -10px;
-  //     margin-top: -10px;
-  //   }`;
-
-  //   return (
-  //     // <div
-  //     //   style={{
-  //     //     margin: "0px auto",
-  //     //     padding: "8px 5px",
-  //     //     fontSize: "15px",
-  //     //     position: "relative",
-  //     //     width: "170px",
-  //     //     textAlign: "center",
-  //     //     backgroundColor: "#fff",
-  //     //     border: "5px solid rgb(190, 190, 250)",
-  //     //     borderRadius: "30px",
-  //     //     boxShadow: "2px 2px 4px #888",
-  //     //   }}
-  //     // >
-  //     <div className="speechbubble">
-  //       <style>{css}</style>
-  //       {text}
-  //     </div>
-  //   );
-  // };
 
   return (
     <div className="mx-auto">
@@ -321,7 +220,6 @@ function Post({ post, isNew }) {
         </div>
 
         <div className="flex justify-end mt-7 align-center md:justify-between relative">
-          {/* <div className="flex justify-end mt-7 md:justify-between relative"> */}
           <div className="hidden text-center md:block">{renderTags()}</div>
           <div className="flex items-center">
             {successMsg ? (
