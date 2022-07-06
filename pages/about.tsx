@@ -4,7 +4,6 @@ function about() {
   return (
     <>
       <div className="text-2xl font-bold mt-5 mb-8 text-green-600">
-        {/* What is / THIS OR THAT / ? */}
         What is [ THIS OR THAT ] ?
       </div>
 
@@ -14,9 +13,6 @@ function about() {
       >
         <span className="font-bold pr-1">This or That [디오댓]</span>은
         결정장애를 가진 사람들을 위한{" "}
-        {/* <span className="underline underline-offset-2 pr-1">
-          소셜 투표 플랫폼
-        </span> */}
         <span className="pr-1">'소셜 투표 플랫폼'</span>
         입니다. <br />
         밸런스 게임부터 소개팅룩 조언까지⁠—
