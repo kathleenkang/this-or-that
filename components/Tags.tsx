@@ -19,13 +19,19 @@ const theme = createTheme({
   },
 });
 
-export default function Tags({ tags, setTags }) {
+interface TagsProps {
+  tags: [];
+  setTags: [];
+}
+
+export default function Tags({ tags, setTags }: TagsProps) {
   const [showPlaceholder, setShowPlaceholder] = useState(true);
   const [options, setOptions] = useState([
     "밸런스게임",
     "패션",
     "사진",
     "쇼핑",
+    "디자인",
     "오늘뭐먹지?",
   ]);
 

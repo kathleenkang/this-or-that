@@ -111,12 +111,7 @@ function PostForm({ post }) {
   };
 
   const handleSubmit = () => {
-    if (
-      type == "text" &&
-      (!options[0].caption || !options[1].caption)
-      // type == "text" &&
-      // (options[0].caption == null || options[1].caption == null)
-    ) {
+    if (type == "text" && (!options[0].caption || !options[1].caption)) {
       setItemsAlert(true);
       return;
     } else if (
@@ -151,11 +146,7 @@ function PostForm({ post }) {
             <span className="text-3xl font-bold pr-2.5 italic">Q.</span>
             <span className="text-xl font-semibold">뭘 골라줄까?</span>
           </div>
-          {/* {titleAlert ? (
-            <span className="ml-9 text-red-500 font-medium">
-              * 질문을 입력하세요
-            </span>
-          ) : null} */}
+
           <span className="flex items-end text-gray-400">
             {letterCount}/100
           </span>
@@ -165,7 +156,6 @@ function PostForm({ post }) {
           className="w-full border-2 px-3 py-2 border-gray-400 rounded-lg text-ellipsis focus:outline-green-600 resize-none"
           id="question"
           maxLength={100}
-          // onChange={(e) => setLetterCount(e.target.value.length)}
           onChange={(e) => {
             setLetterCount(e.target.value.length);
             handleTitleChange(e);
@@ -176,17 +166,6 @@ function PostForm({ post }) {
               ? "오늘 착장에 어느 신발이 더 잘 어울려? / 셀카 골라줘! / 이거 어떤 색으로 살까?"
               : "저녁 뭐 먹지? / 이러이러한 일이 있었는데 나 얘한테 고백할까 말까?"
           }`}
-          // onChange={handleTitleChange}
-          // onChange={async (e) => {
-          //   e.preventDefault();
-
-          //   if (title == "null") {
-          //     Swal.fire("", "내용을 입력해주세요", "question");
-          //     return;
-          //   }
-
-          //   handleTitleChange;
-          // }}
         ></textarea>
       </div>
 
@@ -225,7 +204,6 @@ function PostForm({ post }) {
         <Tags tags={tags} setTags={setTags} />
       </div>
 
-      {/* submit button */}
       <div className="flex justify-end pb-4 items-center">
         {itemsAlert ? (
           <span
@@ -244,13 +222,6 @@ function PostForm({ post }) {
             * 두 가지 이미지를 모두 업로드해주세요
           </span>
         ) : null}
-
-        {/* <button
-          onClick={handleSubmit}
-          className="w-20 h-10 text-center px-4 py-1 rounded-full bg-green-600 text-white font-bold"
-        >
-          Done
-        </button> */}
 
         <UploadButton
           handleSubmit={handleSubmit}

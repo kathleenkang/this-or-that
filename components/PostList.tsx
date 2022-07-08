@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import Post from "./Post";
 
 export default function PostList({ posts }) {
+  // post들이 load 되는 동안은 blank 보여줌
+  if (!posts) {
+    return;
+  }
+
   const renderPost = (post, i) => {
     return (
       <div
@@ -16,8 +21,4 @@ export default function PostList({ posts }) {
   return (
     <div className="post-list">{posts.slice(0).reverse().map(renderPost)}</div>
   );
-}
-
-{
-  /* <div className="border-b-2 border-black-900 mt-8 mb-7"></div> */
 }

@@ -137,11 +137,7 @@ function Post({ post, isNew }) {
 
   const renderTags = () => {
     return myPost.tags.map((tag, i) => (
-      <Link
-        // onClick={filterPost}
-        href={`/?tag=${tag}`}
-        key={`tag-${post._id}-${i}`}
-      >
+      <Link href={`/?tag=${tag}`} key={`tag-${post._id}-${i}`}>
         <a className="inline-block mr-3 mb-1 bg-gray-100	text-gray-500 px-3 py-1 rounded-full cursor-pointer whitespace-nowrap">
           <span className="pr-0.5">#</span>
           {tag}

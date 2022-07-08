@@ -8,7 +8,7 @@ function about() {
       </div>
 
       <div
-        className="text-lg leading-10 text-justify"
+        className="text-lg leading-8 text-justify"
         style={{ wordBreak: "keep-all" }}
       >
         <span className="font-bold pr-1">This or That [디오댓]</span>은

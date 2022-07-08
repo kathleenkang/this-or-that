@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/router";
-import Post from "./Post";
 import { TextAnimation } from "./TextAnimation";
 
 function OptionBoxDisplay({

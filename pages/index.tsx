@@ -19,7 +19,6 @@ export async function getServerSideProps({ query }) {
     `${process.env.HOST}/api/posts${query.tag ? `?tag=${query.tag}` : ""}`
   );
   const data = await res.json();
-  // console.log(data);
 
   return {
     props: {
