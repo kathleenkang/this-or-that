@@ -45,9 +45,6 @@ export default function UploadButton({
           >
             이미지 없이 업로드하시겠습니까?
           </Typography>
-          {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            OK를 누르면 바로 포스트가 생성됩니다.
-          </Typography> */}
           <div className="">
             <button
               className="block bg-green-600 text-white w-20 h-10 mx-auto my-6 rounded-md italic tracking-widest"
@@ -60,7 +57,6 @@ export default function UploadButton({
 
             <a
               className="block text-center underline underline-offset-2 text-orange-500"
-              // onClick={setModalOpen(false)}
               onClick={() => {
                 setModalOpen(false);
               }}
