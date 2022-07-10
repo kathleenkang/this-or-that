@@ -65,7 +65,7 @@ function OptionBoxDisplay({
         {resultDisplay()}
       </div>
       <div
-        className={`px-3.5 py-3 bg-white rounded-lg w-full flex flex-col justify-between grow`}
+        className={`px-3.5 pt-[18px] pb-[16px] bg-white rounded-lg w-full flex flex-col justify-between grow`}
       >
         {option.imageUrl ? (
           <div className="grow flex">
@@ -75,7 +75,7 @@ function OptionBoxDisplay({
         {option.caption ? (
           <div
             className={`text-xl inline-block w-full text-center ${
-              option.imageUrl ? "mt-3" : ""
+              option.imageUrl ? "mt-5 text-gray-500 text-[17px] px-2" : ""
             }`}
             style={
               option.caption.split(" ").filter((word) => {

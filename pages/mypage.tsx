@@ -7,19 +7,6 @@ function mypage() {
   const [posts, setPosts] = useState(null);
   const [uid, setUid] = useState(null);
 
-  // const getOrCreateUid = () => {
-  //   let uid = localStorage.getItem("uid");
-  //   if (uid) {
-  //     setUid(uid);
-  //     return;
-  //   }
-
-  //   uid = ObjectID();
-  //   localStorage.setItem("uid", uid);
-  //   setUid(uid);
-  //   return;
-  // };
-
   const fetchPosts = async () => {
     const uid = await localStorage.getItem("uid");
 
