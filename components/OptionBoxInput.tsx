@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import PictureUpload from "./PictureUpload";
 
 function OptionBoxInput({ type, index, options, handleOptionsChange }) {
-  console.log(options);
-
   const PlaceholderOptions = () => {
     if (type == "image" && index == 0) return "스니커즈";
     else if (type == "image" && index == 1) return "로퍼";

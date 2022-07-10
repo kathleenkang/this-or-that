@@ -38,7 +38,9 @@ function PostForm({ post }) {
 
   const [modalOpen, setModalOpen] = React.useState(false);
 
-  const [letterCount, setLetterCount] = React.useState(0);
+  const [letterCount, setLetterCount] = React.useState(
+    post ? post.title.length : 0
+  );
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -164,7 +166,7 @@ function PostForm({ post }) {
           placeholder={`ex) ${
             type == "image"
               ? "여기에 어떤 신발이 더 잘 어울려? / 셀카 골라줘! / 이거 어떤 색으로 살까?"
-              : "저녁 뭐 먹지? / 데이트 코스로 어떤 게 더 좋겠어?"
+              : "저녁 뭐 먹지? / 데이트 코스로 어떤 걸 더 좋아할까?"
           }`}
         ></textarea>
       </div>

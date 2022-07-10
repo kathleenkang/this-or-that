@@ -31,9 +31,10 @@ export default async function handler(
       post.title = req.body.title;
       post.type = req.body.type;
       post.options = req.body.options;
+      post.tags = req.body.tags;
       post.save();
 
-      res.status(201).json({ success: true });
+      res.status(201).json({ success: true, post: post });
     } catch (error) {
       res.status(400).json({ success: false });
     }

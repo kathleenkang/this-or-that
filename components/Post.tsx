@@ -163,11 +163,19 @@ function Post({ post, isNew }) {
     <div className="mx-auto">
       <div className="md:w-full">
         <div className="mb-6 md:mb-7">
-          <span className="text-3xl font-bold pr-2.5 italic">Q.</span>
+          <div className="flex">
+            <div className="text-3xl font-bold pr-2.5 italic">Q.</div>
 
-          <Link href={`/posts/${myPost._id}`}>
-            <a className="text-xl font-semibold">{myPost.title}</a>
-          </Link>
+            <Link href={`/posts/${myPost._id}`}>
+              <a
+                className="text-xl font-semibold pt-1.5"
+                style={{ wordBreak: "keep-all" }}
+              >
+                {myPost.title}
+              </a>
+            </Link>
+          </div>
+
           <div className="mt-5 md:hidden">{renderTags()}</div>
         </div>
 
@@ -191,7 +199,7 @@ function Post({ post, isNew }) {
             sameUser={sameUser}
           />
 
-          <div className="text-3xl font-bold m-5 text-center tracking-wider italic text-green-600 flex items-center">
+          <div className="text-3xl font-bold m-5 justify-center tracking-wider italic text-green-600 flex items-center">
             or
           </div>
 
