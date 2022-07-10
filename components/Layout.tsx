@@ -39,7 +39,7 @@ function Layout({ children }) {
           // content="대신 정해주는 소셜 투표 플랫폼⁠— 디오댓👍"
           content="대신 정해주는 ‘소셜 투표 플랫폼’ 디오댓👍"
         />
-        <meta property="og:image" content="/public/images/heroheader.png" />
+        <meta property="og:image" content="heroheader.png" />
         <meta property="og:url" content="http://thisorthat.lol" />
 
         {/* Twitter */}
