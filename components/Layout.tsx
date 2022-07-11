@@ -42,8 +42,11 @@ function Layout({ children }) {
         />
         {/* <meta property="og:image" content="heroheader.png" /> */}
         {/* <meta property="og:image" content={ogimg} /> */}
-        <meta property="og:image" content={`../`} />
-        <meta property="og:url" content="http://thisorthat.lol" />
+        <meta
+          property="og:image"
+          content={`${process.env.HOST}/images/heroheader.png`}
+        />
+        <meta property="og:url" content={process.env.HOST} />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary" />
@@ -52,7 +55,10 @@ function Layout({ children }) {
           property="twitter:description"
           content="결정장애? 걱정마요! 소셜 투표 플랫폼 ‘디오댓’에서 대신 정해드립니다 👍"
         />
-        <meta property="twitter:image" content="heroheader.png" />
+        <meta
+          property="twitter:image"
+          content={`${process.env.HOST}/images/heroheader.png`}
+        />
       </Head>
       <Header />
       <div className="px-8 py-6 max-w-7xl mx-auto md:py-8">{children}</div>

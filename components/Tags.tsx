@@ -39,7 +39,11 @@ export default function Tags({ tags, setTags }) {
   useEffect(() => {
     (async () => {
       const res = await axios(`${process.env.HOST}/api/tags`);
-      setOptions(res.data.tags);
+      setOptions(
+        [...options, ...res.data.tags].filter((value, index, self) => {
+          return self.indexOf(value) === index;
+        })
+      );
     })();
   }, []);
 
@@ -87,9 +91,8 @@ export default function Tags({ tags, setTags }) {
             />
           )}
           // onChange={(event, values) => {
-          // onChange={(values) => {
-          onChange={(value) => {
-            setTags(value);
+          onChange={(values) => {
+            setTags(values);
             setShowPlaceholder(false);
           }}
           defaultValue={tags}
