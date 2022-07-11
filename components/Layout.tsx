@@ -33,15 +33,13 @@ function Layout({ children }) {
         {/* Social Media Open Graph Information */}
         {/* 1200x630 */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="this or that? 골라줘!" />
+        <meta property="og:title" content="This or That? 골라줘!" />
 
         <meta
           property="og:description"
           // content="대신 정해주는 소셜 투표 플랫폼⁠— 디오댓👍"
           content="대신 정해주는 ‘소셜 투표 플랫폼’ 디오댓 👍"
         />
-        {/* <meta property="og:image" content="heroheader.png" /> */}
-        {/* <meta property="og:image" content={ogimg} /> */}
         <meta
           property="og:image"
           content={`${process.env.HOST}/images/heroheader.png`}

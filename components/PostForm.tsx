@@ -32,9 +32,6 @@ function PostForm({ post }) {
         ]
   );
   const [tags, setTags] = useState(post && post.tags ? post.tags : []);
-  // const [tags, setTags] = useState(
-  //   !post ? tags : post && post.tags ? post.tags : []
-  // );
 
   const [itemsAlert, setItemsAlert] = useState(false);
   const [imageItemsAlert, setImageItemsAlert] = useState(false);
