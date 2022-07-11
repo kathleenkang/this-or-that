@@ -86,7 +86,8 @@ export default function Tags({ tags, setTags }) {
               }}
             />
           )}
-          onChange={(event, values) => {
+          // onChange={(event, values) => {
+          onChange={(values) => {
             setTags(values);
             setShowPlaceholder(false);
           }}
