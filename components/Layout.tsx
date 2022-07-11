@@ -1,9 +1,24 @@
 import Head from "next/head";
-import React from "react";
+import Script from "next/script";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 // import ogimg from "../public/images/heroheader.png";
 
 function Layout({ children }) {
+  const [userAgent, setUserAgent] = useState("hello");
+
+  useEffect(() => {
+    if (
+      navigator.userAgent.match(/Kakao/i) &&
+      navigator.userAgent.match(/Android/i)
+    ) {
+      location.href =
+        "intent://" +
+        location.href.replace(/https?:\/\//i, "") +
+        "#Intent;scheme=http;package=com.android.chrome;end";
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -69,7 +84,10 @@ function Layout({ children }) {
         </script> */}
       </Head>
       <Header />
-      <div className="px-8 py-6 max-w-7xl mx-auto md:py-8">{children}</div>
+      <div className="px-8 py-6 max-w-7xl mx-auto md:py-8">
+        <h1>{userAgent}</h1>
+        {children}
+      </div>
     </>
   );
 }
