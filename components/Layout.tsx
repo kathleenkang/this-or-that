@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
 import Header from "./Header";
-import ogimg from "../public/images/heroheader.png";
+// import ogimg from "../public/images/heroheader.png";
 
 function Layout({ children }) {
   return (
@@ -38,10 +38,11 @@ function Layout({ children }) {
         <meta
           property="og:description"
           // content="대신 정해주는 소셜 투표 플랫폼⁠— 디오댓👍"
-          content="👍 대신 정해주는 ‘소셜 투표 플랫폼’ 디오댓 👍"
+          content="대신 정해주는 ‘소셜 투표 플랫폼’ 디오댓 👍"
         />
         {/* <meta property="og:image" content="heroheader.png" /> */}
-        <meta property="og:image" content={ogimg} />
+        {/* <meta property="og:image" content={ogimg} /> */}
+        <meta property="og:image" content={`../`} />
         <meta property="og:url" content="http://thisorthat.lol" />
 
         {/* Twitter */}

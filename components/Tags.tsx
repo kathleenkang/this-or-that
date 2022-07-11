@@ -19,12 +19,13 @@ const theme = createTheme({
   },
 });
 
-interface TagsProps {
-  tags: [];
-  setTags: [];
-}
+// interface TagsProps {
+//   tags: [];
+//   setTags: [];
+// }
 
-export default function Tags({ tags, setTags }: TagsProps) {
+// export default function Tags({ tags, setTags }: TagsProps) {
+export default function Tags({ tags, setTags }) {
   const [showPlaceholder, setShowPlaceholder] = useState(true);
   const [options, setOptions] = useState([
     "밸런스게임",
