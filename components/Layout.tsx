@@ -59,14 +59,14 @@ function Layout({ children }) {
         />
 
         {/* Global site tag (gtag.js) - Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GZ9QQ06L4R"></script>
+        {/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-GZ9QQ06L4R"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', 'G-GZ9QQ06L4R');
-        </script>
+        </script> */}
       </Head>
       <Header />
       <div className="px-8 py-6 max-w-7xl mx-auto md:py-8">{children}</div>
