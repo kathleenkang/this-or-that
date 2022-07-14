@@ -1,7 +1,7 @@
 import ErrorPage from "../components/errorPage";
 
-function Custom404() {
+function Custom500() {
   return <ErrorPage />;
 }
 
-export default Custom404;
+export default Custom500;
