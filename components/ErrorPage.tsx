@@ -16,10 +16,8 @@ function ErrorPage() {
 
   return (
     <div className="grid place-content-center">
-      <div className="">
-        <h1 className="text-green-600 font-black text-5xl mb-3 md:mt-7">
-          Oops...!
-        </h1>
+      <div>
+        <h1 className="text-green-600 font-black text-5xl mb-3">Oops...!</h1>
         <h2 className="text-2xl font-semibold text-gray-700 mb-10">
           존재하지 않는 페이지입니다.
         </h2>
