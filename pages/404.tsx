@@ -25,18 +25,20 @@ function Custom404() {
   return (
     <div className="grid place-content-center">
       <div>
-        <div className="text-green-600 font-black text-5xl mb-3">Oops...!</div>
-        <div className="text-2xl font-semibold text-gray-700 mb-10">
+        <div className="text-green-600 font-black text-5xl mb-3 xl:mt-10">
+          Oops...!
+        </div>
+        <div className="text-2xl font-semibold text-gray-700">
           존재하지 않는 페이지입니다.
         </div>
       </div>
 
-      <div className="max-w-[600px]">
+      <div className="max-w-[600px] mt-5 xl:mt-10 mb-5 xl:mb-10">
         <Image src={errorImg} />
       </div>
 
       <div
-        className="text-gray-600 text-xl leading-8 mt-10"
+        className="text-gray-600 text-xl leading-8"
         style={{ wordBreak: "keep-all" }}
       >
         <div className="mb-4">
