@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { TextAnimation } from "./TextAnimation";
-// import Hyperlink from "react-native-hyperlink";
 
 function OptionBoxDisplay({
   label,
@@ -11,7 +10,6 @@ function OptionBoxDisplay({
   sameUser,
 }) {
   const [showMore, setShowMore] = useState(false);
-  // const [nestedLink, setNestedLink] = useState(false);
   const [hovered, setHovered] = useState(false);
 
   const option = post.options[index];
@@ -33,8 +31,8 @@ function OptionBoxDisplay({
     }
   };
 
-  const linkifyCaption = (caption, i) => {
-    return caption.split(" ").map((word) => {
+  const linkifyCaption = (caption) => {
+    return caption.split(" ").map((word, i) => {
       let expression =
         /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
       let regex = new RegExp(expression);
@@ -52,22 +50,20 @@ function OptionBoxDisplay({
                 setHovered(false);
               }}
             >
-              {word}
+              {`${word}${caption.length == i - 1 ? "" : " "}`}
             </a>
-            {caption.length == i - 1 ? null : <>&nbsp;</>}
           </>
         );
       }
-      return (
-        <>
-          {word}
-          {caption.length == i - 1 ? null : <>&nbsp;</>}
-        </>
-      );
+      return <span>{`${word}${caption.length == i - 1 ? "" : " "}`}</span>;
     });
   };
 
   const conditions = ["showmore-btn", "nested-link"];
+
+  if (option.caption) {
+    console.log(linkifyCaption(option.caption));
+  }
 
   return (
     <div
@@ -111,22 +107,44 @@ function OptionBoxDisplay({
           </div>
         ) : null}
         {option.caption ? (
-          // <Hyperlink linkDefault={true}>
           <div
             className={`text-xl inline-block w-full text-center ${
               option.imageUrl ? "mt-5 text-gray-500 text-[17px] px-2" : ""
             }`}
+            // style={
+            //   option.caption.split(" ").filter((word) => {
+            //     return word.length > 10;
+            //   }).length == 0
+            //     ? { wordBreak: "keep-all" }
+            //     : // : {}
+            //       { wordBreak: "break-word" }
+            // }
+
             style={
               option.caption.split(" ").filter((word) => {
                 return word.length > 10;
               }).length == 0
-                ? { wordBreak: "keep-all" }
-                : { wordBreak: "break-all" }
+                ? { wordBreak: "keep-all", wordWrap: "normal" }
+                : // {}
+                  {
+                    wordBreak: "break-word",
+                    // wordWrap: "break-word",
+                    wordWrap: "break-word",
+                  }
             }
           >
             {showMore
               ? linkifyCaption(option.caption)
               : linkifyCaption(option.caption.substring(0, 165))}
+            {/* <span>살해협박범&nbsp;</span>
+            <span>강해상&nbsp;</span>
+            <span>나한테는&nbsp;</span>
+            <span>매너&nbsp;</span>
+            <span>최고,&nbsp;</span>
+            <span>해&nbsp;</span>
+            <span>1도&nbsp;</span>
+            <span>안&nbsp;</span>
+            <span>가하지만&nbsp;</span> */}
 
             {option.caption.length < 165 ? null : (
               <button
@@ -142,8 +160,7 @@ function OptionBoxDisplay({
               </button>
             )}
           </div>
-        ) : // </Hyperlink>
-        null}
+        ) : null}
       </div>
     </div>
   );
