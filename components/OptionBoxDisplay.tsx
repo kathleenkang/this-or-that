@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { TextAnimation } from "./TextAnimation";
+// import Hyperlink from "react-native-hyperlink";
 
 function OptionBoxDisplay({
   label,
@@ -10,6 +11,7 @@ function OptionBoxDisplay({
   sameUser,
 }) {
   const [showMore, setShowMore] = useState(false);
+  // const [nestedLink, setNestedLink] = useState(false);
   const [hovered, setHovered] = useState(false);
 
   const option = post.options[index];
@@ -31,12 +33,48 @@ function OptionBoxDisplay({
     }
   };
 
+  const linkifyCaption = (caption, i) => {
+    return caption.split(" ").map((word) => {
+      let expression =
+        /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+      let regex = new RegExp(expression);
+      if (word.match(regex)) {
+        return (
+          <>
+            <a
+              href={word}
+              target="_blank"
+              className="nested-link text-orange-500 hover:underline underline-offset-4"
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              onMouseEnter={(e) => {
+                setHovered(false);
+              }}
+            >
+              {word}
+            </a>
+            {caption.length == i - 1 ? null : <>&nbsp;</>}
+          </>
+        );
+      }
+      return (
+        <>
+          {word}
+          {caption.length == i - 1 ? null : <>&nbsp;</>}
+        </>
+      );
+    });
+  };
+
+  const conditions = ["showmore-btn", "nested-link"];
+
   return (
     <div
       id="optionbox"
       onClick={onClick}
       onMouseOver={(e) => {
-        if (!e.target.className.includes("showmore-btn")) {
+        if (!conditions.some((el) => e.target.className.includes(el))) {
           setHovered(true);
         }
       }}
@@ -73,6 +111,7 @@ function OptionBoxDisplay({
           </div>
         ) : null}
         {option.caption ? (
+          // <Hyperlink linkDefault={true}>
           <div
             className={`text-xl inline-block w-full text-center ${
               option.imageUrl ? "mt-5 text-gray-500 text-[17px] px-2" : ""
@@ -82,14 +121,12 @@ function OptionBoxDisplay({
                 return word.length > 10;
               }).length == 0
                 ? { wordBreak: "keep-all" }
-                : {}
+                : { wordBreak: "break-all" }
             }
           >
-            <div className="">
-              {showMore
-                ? option.caption
-                : `${option.caption.substring(0, 165)}`}
-            </div>
+            {showMore
+              ? linkifyCaption(option.caption)
+              : linkifyCaption(option.caption.substring(0, 165))}
 
             {option.caption.length < 165 ? null : (
               <button
@@ -105,7 +142,8 @@ function OptionBoxDisplay({
               </button>
             )}
           </div>
-        ) : null}
+        ) : // </Hyperlink>
+        null}
       </div>
     </div>
   );

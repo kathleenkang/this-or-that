@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import errorImg from "../public/images/dino-run.gif";
+// import errorImg from "../public/images/astronaut-cropped.gif";
 import countdown from "../public/images/countdown.gif";
 
 function Custom404() {
@@ -30,10 +31,12 @@ function Custom404() {
         </div>
         <div className="text-2xl font-semibold text-gray-700">
           존재하지 않는 페이지입니다.
+          {/* 여긴 어디...? 나는 누구...? */}
         </div>
       </div>
 
       <div className="max-w-[600px] mt-5 xl:mt-10 mb-5 xl:mb-10">
+        {/* <div className="max-w-[600px] mt-2 xl:mt-10 xl:mb-10"> */}
         <Image src={errorImg} />
       </div>
 

@@ -22,6 +22,7 @@
     "next-s3-upload": "^0.2.2",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "react-native-hyperlink": "^0.0.19",
     "sweetalert2": "^11.4.17"
   },
   "devDependencies": {
