@@ -99,7 +99,8 @@ function OptionBoxDisplay({
         {resultDisplay()}
       </div>
       <div
-        className={`px-3.5 pt-[18px] pb-[16px] bg-white rounded-lg w-full flex flex-col justify-between grow`}
+        // className={`px-3.5 pt-[18px] pb-[16px] bg-white rounded-lg w-full flex flex-col justify-between grow`}
+        className={`px-3.5 pt-[18px] pb-[16px] bg-white rounded-lg w-full flex flex-col grow justify-center`}
       >
         {option.imageUrl ? (
           <div className="grow flex">
@@ -111,24 +112,13 @@ function OptionBoxDisplay({
             className={`text-xl inline-block w-full text-center ${
               option.imageUrl ? "mt-5 text-gray-500 text-[17px] px-2" : ""
             }`}
-            // style={
-            //   option.caption.split(" ").filter((word) => {
-            //     return word.length > 10;
-            //   }).length == 0
-            //     ? { wordBreak: "keep-all" }
-            //     : // : {}
-            //       { wordBreak: "break-word" }
-            // }
-
             style={
               option.caption.split(" ").filter((word) => {
                 return word.length > 10;
               }).length == 0
                 ? { wordBreak: "keep-all", wordWrap: "normal" }
-                : // {}
-                  {
+                : {
                     wordBreak: "break-word",
-                    // wordWrap: "break-word",
                     wordWrap: "break-word",
                   }
             }
@@ -136,15 +126,6 @@ function OptionBoxDisplay({
             {showMore
               ? linkifyCaption(option.caption)
               : linkifyCaption(option.caption.substring(0, 165))}
-            {/* <span>살해협박범&nbsp;</span>
-            <span>강해상&nbsp;</span>
-            <span>나한테는&nbsp;</span>
-            <span>매너&nbsp;</span>
-            <span>최고,&nbsp;</span>
-            <span>해&nbsp;</span>
-            <span>1도&nbsp;</span>
-            <span>안&nbsp;</span>
-            <span>가하지만&nbsp;</span> */}
 
             {option.caption.length < 165 ? null : (
               <button
