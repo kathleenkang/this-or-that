@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
 import Chip from "@mui/material/Chip";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
@@ -21,26 +21,12 @@ const theme = createTheme({
   },
 });
 
-// type TagsProps = {
-//   tags: [];
-//   setTags: [];
-// };
-
 type TagsProps = {
   tags: Array<string>;
   setTags: Dispatch<SetStateAction<string>>;
 };
 
-// export default function Tags({
-//   tags,
-//   setTags,
-// }: {
-//   // tags: [];
-//   tags: Array;
-//   setTags: Dispatch<SetStateAction<string>>;
-// }) {
 export default function Tags({ tags, setTags }: TagsProps) {
-  // export default function Tags({ tags, setTags }) {
   const [showPlaceholder, setShowPlaceholder] = useState(true);
   const [options, setOptions] = useState([
     "밸런스게임",
