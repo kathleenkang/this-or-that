@@ -1,23 +1,34 @@
 import React, { useState } from "react";
-import OptionBoxInput from "../components/OptionBoxInput";
+import OptionBoxInput from "./OptionBoxInput";
 import axios from "axios";
 import { useRouter } from "next/router";
-import UploadButton from "../components/UploadButton";
+import UploadButton from "./UploadButton";
 
 import ObjectID from "bson-objectid";
 import Tags from "./Tags";
+import { OptionUnstyledProps } from "@mui/base";
 
-function PostForm({ post }) {
+type PostProps = {
+  _id: string;
+  type: string;
+  title: string;
+  // options: Object;
+  options: {
+    imageUrl: string | null;
+    caption: string | null;
+  }[];
+  tags: [string];
+};
+
+// function PostForm({ post }) {
+function PostForm({ post }: { post: PostProps }) {
+  // function PostForm({ post }: object) {
+  // function PostForm({ post }: { post: Object }) {
   const router = useRouter();
 
   const [type, setType] = useState(post ? post.type : "image");
   const [title, setTitle] = useState(post ? post.title : "");
-  const [options, setOptions] = useState<
-    {
-      imageUrl: string | null;
-      caption: string | null;
-    }[]
-  >(
+  const [options, setOptions] = useState(
     post
       ? post.options
       : [
@@ -42,15 +53,25 @@ function PostForm({ post }) {
     post ? post.title.length : 0
   );
 
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // const handleTitleChange = () => {
+  // const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
   };
 
+  // type handleOptionsChangeProps = {
+  //   index: number;
+  //   attribute: string;
+  //   newValue: string;
+  // };
+
+  // const handleOptionsChange = () => {
   const handleOptionsChange = (
     index: number,
     attribute: string,
     newValue: string
   ) => {
+    // const handleOptionsChange = (props: handleOptionsChangeProps) => {
     let newOptions = [...options];
     newOptions[index][attribute] = newValue;
     setOptions(newOptions);
@@ -71,7 +92,7 @@ function PostForm({ post }) {
     return uid;
   };
 
-  const submitPost = (submitType) => {
+  const submitPost = (submitType: string) => {
     const body = {
       title: title && title.trim().length !== 0 ? title : "골라줘!",
       type: submitType,

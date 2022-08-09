@@ -6,7 +6,9 @@
 
 // export default Custom500;
 
-import { React, useEffect } from "react";
+// import { React, useEffect } from "react";
+import React, { useEffect } from "react";
+
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";

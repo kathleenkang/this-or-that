@@ -1,6 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { TextAnimation } from "./TextAnimation";
 
+type OptionBoxDisplayTypes = {
+  label: string;
+  // onClick: React.MouseEventHandler<HTMLDivElement> | undefined;
+  // onClick: (() => void) | null;
+  // post: Object;
+  post: {
+    _id: string;
+    type: string;
+    title: string;
+    options: [{ imageUrl: string; caption: string }];
+    tags: [string];
+    // votes: [
+    //   { uid: string; selectedIndex: number; _id: string; createdAt: string }
+    // ];
+    // votes: Array<Object>;
+    votes: [{ selectedIndex: number }];
+  };
+  index: number;
+  selectedIndex: number | null;
+  sameUser: boolean;
+};
+
 function OptionBoxDisplay({
   label,
   onClick,
@@ -8,7 +30,7 @@ function OptionBoxDisplay({
   index,
   selectedIndex,
   sameUser,
-}) {
+}: OptionBoxDisplayTypes) {
   const [showMore, setShowMore] = useState(false);
   const [hovered, setHovered] = useState(false);
 
@@ -31,8 +53,8 @@ function OptionBoxDisplay({
     }
   };
 
-  const linkifyCaption = (caption) => {
-    return caption.split(" ").map((word, i) => {
+  const linkifyCaption = (caption: string) => {
+    return caption.split(" ").map((word: string, i: number) => {
       let expression =
         /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
       let regex = new RegExp(expression);
@@ -61,9 +83,9 @@ function OptionBoxDisplay({
 
   const conditions = ["showmore-btn", "nested-link"];
 
-  if (option.caption) {
-    console.log(linkifyCaption(option.caption));
-  }
+  // if (option.caption) {
+  //   console.log(linkifyCaption(option.caption));
+  // }
 
   return (
     <div
@@ -113,7 +135,7 @@ function OptionBoxDisplay({
               option.imageUrl ? "mt-5 text-gray-500 text-[17px] px-2" : ""
             }`}
             style={
-              option.caption.split(" ").filter((word) => {
+              option.caption.split(" ").filter((word: string) => {
                 return word.length > 10;
               }).length == 0
                 ? { wordBreak: "keep-all", wordWrap: "normal" }
@@ -131,7 +153,9 @@ function OptionBoxDisplay({
               <button
                 className="showmore-btn text-green-600 block mt-1.5 ml-auto mr-1 hover:text-orange-500"
                 onClick={(e) => {
-                  e.stopPropagation(setShowMore(!showMore));
+                  // e.stopPropagation(setShowMore(!showMore));
+                  setShowMore(!showMore);
+                  e.stopPropagation();
                 }}
                 onMouseEnter={(e) => {
                   setHovered(false);

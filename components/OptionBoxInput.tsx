@@ -1,7 +1,27 @@
 import React, { useState } from "react";
 import PictureUpload from "./PictureUpload";
 
-function OptionBoxInput({ type, index, options, handleOptionsChange }) {
+type OptionBoxInputTypes = {
+  type: string;
+  index: number;
+  options: {
+    imageUrl: string | null;
+    caption: string | null;
+  }[];
+  // handleOptionsChange: React.ChangeEvent<HTMLInputElement>;
+  handleOptionsChange: (
+    index: number,
+    attribute: string,
+    newValue: string
+  ) => void;
+};
+
+function OptionBoxInput({
+  type,
+  index,
+  options,
+  handleOptionsChange,
+}: OptionBoxInputTypes) {
   const PlaceholderOptions = () => {
     if (type == "image" && index == 0) return "스니커즈";
     else if (type == "image" && index == 1) return "로퍼";
@@ -43,7 +63,7 @@ function OptionBoxInput({ type, index, options, handleOptionsChange }) {
           } md:${type == "image" ? "h-10" : "h-48"}`}
           placeholder={`ex) ${PlaceholderOptions()}`}
           defaultValue={options[index]["caption"]}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
             handleOptionsChange(index, "caption", e.target.value);
           }}
         ></textarea>

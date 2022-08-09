@@ -1,6 +1,12 @@
 import Post from "../../components/Post";
 
-export default function ShowPost({ post, isNew }) {
+type showPostProps = {
+  post: {};
+  isNew: boolean;
+};
+
+// export default function ShowPost({ post, isNew }) {
+export default function ShowPost({ post, isNew }: showPostProps) {
   return (
     <div>
       <Post post={post} isNew={isNew} />

@@ -40,15 +40,15 @@ function Post({ post, isNew }) {
       })
       .then((response) => {
         setMyPost(response.data.post);
-        console.log(response);
+        // console.log(response);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const vote = (index) => {
-    console.log("vote!", index);
+  const vote = (index: number) => {
+    // console.log("vote!", index);
     voteRequest("vote", index);
   };
 
@@ -61,7 +61,7 @@ function Post({ post, isNew }) {
   const [modalOpen, setModalOpen] = React.useState(false);
 
   const style = {
-    position: "absolute" as "absolute",
+    position: "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",

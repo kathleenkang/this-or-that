@@ -1,6 +1,11 @@
 import styles from "./TextAnimation.module.css";
 
-export function TextAnimation({ voteCount }) {
+type TextAnimationTypes = {
+  voteCount: number;
+};
+
+// export function TextAnimation({ voteCount }: number) {
+export function TextAnimation({ voteCount }: TextAnimationTypes) {
   return (
     <div className={`${styles.revealText}`}>
       👍

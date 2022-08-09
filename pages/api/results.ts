@@ -9,6 +9,6 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  console.log(req.method);
+  // console.log(req.method);
   res.status(200).json({ voteCount: 130 });
 }
