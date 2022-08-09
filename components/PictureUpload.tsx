@@ -3,13 +3,24 @@ import Image from "next/image";
 import uploadIcon from "../public/images/upload_icon.png";
 import { useS3Upload } from "next-s3-upload";
 
-function PictureUpload({ index, handleOptionsChange, imageUrl }) {
+type PictureUploadProps = {
+  index: number;
+  // handleOptionsChange;
+  handleOptionsChange: any;
+  imageUrl: string;
+};
+
+function PictureUpload({
+  index,
+  handleOptionsChange,
+  imageUrl,
+}: PictureUploadProps) {
   let { uploadToS3 } = useS3Upload();
 
   const [isImg, setIsImg] = useState(true);
 
-  const handleChange = async (e) => {
-    console.log(e);
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log(e);
 
     const reader = new FileReader();
     const file = e.target.files[0];

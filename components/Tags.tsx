@@ -8,6 +8,8 @@ import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/material";
 import axios from "axios";
 
+import { Dispatch, SetStateAction } from "react";
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -20,8 +22,8 @@ const theme = createTheme({
 });
 
 type TagsProps = {
-  tags: string[];
-  setTags: Dispatch<string[]>;
+  tags: Array<string>;
+  setTags: Dispatch<SetStateAction<string>>;
 };
 
 export default function Tags({ tags, setTags }: TagsProps) {
@@ -54,8 +56,8 @@ export default function Tags({ tags, setTags }: TagsProps) {
           id="tags-filled"
           options={options}
           freeSolo
-          renderTags={(value: readonly string[], getTagProps) =>
-            value.map((option: string, index: number) => (
+          renderTags={(value, getTagProps) =>
+            value.map((option, index) => (
               <Chip
                 variant="outlined"
                 label={option}

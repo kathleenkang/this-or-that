@@ -14,7 +14,7 @@ export default async function handler(
 
   if (req.method == "GET") {
     try {
-      console.log(req.query.uid);
+      // console.log(req.query.uid);
 
       const posts = await Post.find(
         req.query.uid
@@ -29,7 +29,7 @@ export default async function handler(
       res.status(400).json({ success: false });
     }
   } else if (req.method == "POST") {
-    console.log(req.body);
+    // console.log(req.body);
     try {
       const post = await Post.create(
         req.body
