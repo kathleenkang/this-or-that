@@ -21,9 +21,7 @@ function OptionBoxDisplay({
 }: Props) {
   const [showMore, setShowMore] = useState<boolean>(false);
   const [hovered, setHovered] = useState<boolean>(false);
-
   const option = post.options[index];
-
   const resultDisplay = () => {
     const result = (
       <TextAnimation
@@ -42,7 +40,7 @@ function OptionBoxDisplay({
   };
 
   const linkifyCaption = (caption: string) => {
-    return caption.split(" ").map((word, i) => {
+    return caption.split(" ").map((word: string, i: number) => {
       let expression =
         /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
       let regex = new RegExp(expression);

@@ -6,8 +6,7 @@
 
 // export default Custom500;
 
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -35,7 +34,7 @@ function Custom500() {
       </div>
 
       <div className="max-w-[600px] mt-5 xl:mt-10 mb-5 xl:mb-10">
-        <Image src={errorImg} />
+        <Image src={errorImg} alt="Error" />
       </div>
 
       <div
@@ -53,7 +52,7 @@ function Custom500() {
         에서 더 많은 포스트를 구경하세요!
         <div className="mt-4">
           <div className="w-[30px] inline-block align-top">
-            <Image src={countdown} />
+            <Image src={countdown} alt="Countdown" />
           </div>{" "}
           초 후 자동으로 연결됩니다.
         </div>

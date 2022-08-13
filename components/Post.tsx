@@ -47,7 +47,6 @@ function Post({ post, isNew }: Props) {
       })
       .then((response) => {
         setMyPost(response.data.post);
-        console.log(response);
       })
       .catch((error) => {
         console.log(error);
@@ -67,7 +66,7 @@ function Post({ post, isNew }: Props) {
   const [modalOpen, setModalOpen] = React.useState(false);
 
   const style = {
-    position: "absolute" as "absolute",
+    position: "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",

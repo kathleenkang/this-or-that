@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import OptionBoxInput from "../components/OptionBoxInput";
+import OptionBoxInput from "./OptionBoxInput";
 import axios from "axios";
 import { useRouter } from "next/router";
-import UploadButton from "../components/UploadButton";
+import UploadButton from "./UploadButton";
 
 import ObjectID from "bson-objectid";
-import Tags from "./Tags";
+import TagInput from "./TagInput";
 import { Option, Post } from "../types/global";
 
 type Props = {
@@ -17,12 +17,7 @@ function PostForm({ post }: Props) {
 
   const [type, setType] = useState(post ? post.type : "image");
   const [title, setTitle] = useState(post ? post.title : "");
-  const [options, setOptions] = useState<
-    {
-      imageUrl: string | null;
-      caption: string | null;
-    }[]
-  >(
+  const [options, setOptions] = useState(
     post
       ? post.options
       : [
@@ -53,6 +48,13 @@ function PostForm({ post }: Props) {
     setTitle(e.target.value);
   };
 
+  // type handleOptionsChangeProps = {
+  //   index: number;
+  //   attribute: string;
+  //   newValue: string;
+  // };
+
+  // const handleOptionsChange = () => {
   const handleOptionsChange = (
     index: number,
     attribute: string,
@@ -64,6 +66,7 @@ function PostForm({ post }: Props) {
     } else if (attribute == "caption") {
       newOptions[index].caption = newValue;
     }
+
     setOptions(newOptions);
     if (newOptions[0]["imageUrl"] && newOptions[1]["imageUrl"]) {
       setImageItemsAlert(false);
@@ -214,7 +217,7 @@ function PostForm({ post }: Props) {
       </div>
 
       <div className="my-10">
-        <Tags tags={tags} setTags={setTags} />
+        <TagInput tags={tags} setTags={setTags} />
       </div>
 
       <div className="flex justify-end pb-4 items-center">

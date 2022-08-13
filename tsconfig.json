@@ -15,6 +15,31 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "pages/_app.tsx",
+    "pages/404.tsx",
+    "pages/postupload.tsx",
+    "pages/mypage.tsx",
+    "pages/index.tsx",
+    "pages/about.tsx",
+    "pages/500.tsx",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "components/UploadButton.tsx",
+    "components/TextAnimation.tsx",
+    "components/TagInput.tsx",
+    "components/ShadowSpeechBubble.tsx",
+    "components/PostMenuButton.tsx",
+    "components/PostList.tsx",
+    "components/PostForm.tsx",
+    "components/Post.tsx",
+    "components/PictureUpload.tsx",
+    "components/OptionBoxInput.tsx",
+    "components/OptionBoxDisplay.tsx",
+    "components/Layout.tsx",
+    "components/Header.js",
+    "components/ErrorPage.tsx"
+  ],
   "exclude": ["node_modules"]
 }

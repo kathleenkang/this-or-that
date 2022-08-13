@@ -3,11 +3,7 @@ import Script from "next/script";
 import React, { useEffect } from "react";
 import Header from "./Header";
 
-type Props = {
-  children: React.ReactNode;
-};
-
-function Layout({ children }: Props) {
+function Layout({ children }: React.PropsWithChildren<{}>) {
   useEffect(() => {
     if (
       navigator.userAgent.match(/Kakao/i) &&

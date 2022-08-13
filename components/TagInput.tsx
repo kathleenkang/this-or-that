@@ -13,7 +13,7 @@ type Props = {
   setTags: Dispatch<string[]>;
 };
 
-export default function Tags({ tags, setTags }: Props) {
+export default function TagInput({ tags, setTags }: Props) {
   const [showPlaceholder, setShowPlaceholder] = useState(true);
   const [options, setOptions] = useState([
     "밸런스게임",
@@ -54,12 +54,13 @@ export default function Tags({ tags, setTags }: Props) {
           id="tags-filled"
           options={options}
           freeSolo
-          renderTags={(value: readonly string[], getTagProps) =>
-            value.map((option: string, index: number) => (
+          renderTags={(value, getTagProps) =>
+            value.map((option, index) => (
               <Chip
                 variant="outlined"
                 label={option}
                 {...getTagProps({ index })}
+                key={`${options}-${index}`}
               />
             ))
           }
