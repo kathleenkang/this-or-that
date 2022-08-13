@@ -1,6 +1,13 @@
+import { GetServerSidePropsContext } from "next";
 import PostList from "../components/PostList";
+import { Post } from "../types/global";
 
-export default function Home({ posts, tag }) {
+type Props = {
+  posts: Post[];
+  tag: string;
+};
+
+export default function Home({ posts, tag }: Props) {
   return (
     <>
       {tag ? (
@@ -14,7 +21,7 @@ export default function Home({ posts, tag }) {
   );
 }
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ query }: GetServerSidePropsContext) {
   const res = await fetch(
     `${process.env.HOST}/api/posts${query.tag ? `?tag=${query.tag}` : ""}`
   );

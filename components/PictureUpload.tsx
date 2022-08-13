@@ -3,16 +3,26 @@ import Image from "next/image";
 import uploadIcon from "../public/images/upload_icon.png";
 import { useS3Upload } from "next-s3-upload";
 
-function PictureUpload({ index, handleOptionsChange, imageUrl }) {
+type Props = {
+  index: number;
+  handleOptionsChange: (
+    index: number,
+    attribute: string,
+    newValue: string
+  ) => void;
+  imageUrl: string | null;
+};
+
+function PictureUpload({ index, handleOptionsChange, imageUrl }: Props) {
   let { uploadToS3 } = useS3Upload();
 
   const [isImg, setIsImg] = useState(true);
 
-  const handleChange = async (e) => {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e);
 
     const reader = new FileReader();
-    const file = e.target.files[0];
+    const file = e.target.files?.[0];
 
     if (!file) {
       return;
@@ -28,7 +38,8 @@ function PictureUpload({ index, handleOptionsChange, imageUrl }) {
     try {
       reader.onloadend = async () => {
         let { url } = await uploadToS3(
-          Blob.prototype.stream ? file : safariStream(file)
+          // Blob.prototype.stream ? file : safariStream(file)
+          file
         );
         handleOptionsChange(index, "imageUrl", url);
       };
@@ -78,7 +89,7 @@ function PictureUpload({ index, handleOptionsChange, imageUrl }) {
         <label className="relative">
           <div>
             <div className="w-14 m-auto pb-1 opacity-50">
-              <Image src={uploadIcon} />
+              <Image src={uploadIcon} alt="Upload Icon" />
             </div>
 
             <div className="text-sm text-center text-gray-500 pb-2">

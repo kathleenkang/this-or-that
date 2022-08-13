@@ -1,9 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../../lib/dbConnect";
+import { Post as PostType } from "../../../../types/global";
 import Post from "../../../../models/Post";
 
 type Data = {
-  name: string;
+  success: boolean;
+  post?: PostType;
 };
 
 export default async function handler(
@@ -19,7 +21,7 @@ export default async function handler(
       const post = await Post.findOne({
         _id: pid,
       });
-      const voteByOthers = post.votes.filter((vote) => vote.uid != uid);
+      const voteByOthers = post.votes.filter((vote: {uid: string}) => vote.uid != uid);
       if (req.body.action == "vote") {
         post.votes = [...voteByOthers, req.body];
       } else if (req.body.action == "unvote") {

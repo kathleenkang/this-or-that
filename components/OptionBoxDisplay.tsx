@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { Post, Vote } from "../types/global";
 import { TextAnimation } from "./TextAnimation";
+
+type Props = {
+  label: string;
+  onClick: (() => void) | undefined;
+  post: Post;
+  index: number;
+  selectedIndex: number | null;
+  sameUser: boolean;
+};
 
 function OptionBoxDisplay({
   label,
@@ -8,9 +18,9 @@ function OptionBoxDisplay({
   index,
   selectedIndex,
   sameUser,
-}) {
-  const [showMore, setShowMore] = useState(false);
-  const [hovered, setHovered] = useState(false);
+}: Props) {
+  const [showMore, setShowMore] = useState<boolean>(false);
+  const [hovered, setHovered] = useState<boolean>(false);
 
   const option = post.options[index];
 
@@ -18,7 +28,7 @@ function OptionBoxDisplay({
     const result = (
       <TextAnimation
         voteCount={
-          post.votes.filter((vote) => vote.selectedIndex == index).length
+          post.votes.filter((vote: Vote) => vote.selectedIndex == index).length
         }
       />
     );
@@ -31,7 +41,7 @@ function OptionBoxDisplay({
     }
   };
 
-  const linkifyCaption = (caption) => {
+  const linkifyCaption = (caption: string) => {
     return caption.split(" ").map((word, i) => {
       let expression =
         /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
@@ -42,6 +52,7 @@ function OptionBoxDisplay({
             <a
               href={word}
               target="_blank"
+              rel="noreferrer"
               className="nested-link text-orange-500 hover:underline underline-offset-4"
               onClick={(e) => {
                 e.stopPropagation();
@@ -55,22 +66,23 @@ function OptionBoxDisplay({
           </>
         );
       }
-      return <span>{`${word}${caption.length == i - 1 ? "" : " "}`}</span>;
+      return (
+        <span key={`${post._id}-${word}-${i}`}>{`${word}${
+          caption.length == i - 1 ? "" : " "
+        }`}</span>
+      );
     });
   };
 
   const conditions = ["showmore-btn", "nested-link"];
 
-  if (option.caption) {
-    console.log(linkifyCaption(option.caption));
-  }
-
   return (
     <div
       id="optionbox"
       onClick={onClick}
-      onMouseOver={(e) => {
-        if (!conditions.some((el) => e.target.className.includes(el))) {
+      onMouseOver={(e: React.MouseEvent<HTMLDivElement>) => {
+        let div = e.target as HTMLDivElement;
+        if (!conditions.some((el) => div.className.includes(el))) {
           setHovered(true);
         }
       }}
@@ -99,12 +111,15 @@ function OptionBoxDisplay({
         {resultDisplay()}
       </div>
       <div
-        // className={`px-3.5 pt-[18px] pb-[16px] bg-white rounded-lg w-full flex flex-col justify-between grow`}
         className={`px-3.5 pt-[18px] pb-[16px] bg-white rounded-lg w-full flex flex-col grow justify-center`}
       >
         {option.imageUrl ? (
           <div className="grow flex">
-            <img src={option.imageUrl} className="max-h-96 m-auto" />
+            <img
+              src={option.imageUrl}
+              className="max-h-96 m-auto"
+              alt="Option Image"
+            />
           </div>
         ) : null}
         {option.caption ? (
@@ -113,7 +128,7 @@ function OptionBoxDisplay({
               option.imageUrl ? "mt-5 text-gray-500 text-[17px] px-2" : ""
             }`}
             style={
-              option.caption.split(" ").filter((word) => {
+              option.caption.split(" ").filter((word: string) => {
                 return word.length > 10;
               }).length == 0
                 ? { wordBreak: "keep-all", wordWrap: "normal" }
@@ -131,7 +146,8 @@ function OptionBoxDisplay({
               <button
                 className="showmore-btn text-green-600 block mt-1.5 ml-auto mr-1 hover:text-orange-500"
                 onClick={(e) => {
-                  e.stopPropagation(setShowMore(!showMore));
+                  setShowMore(!showMore);
+                  e.stopPropagation();
                 }}
                 onMouseEnter={(e) => {
                   setHovered(false);

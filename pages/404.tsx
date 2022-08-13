@@ -6,7 +6,8 @@
 
 // export default Custom404;
 
-import { React, useEffect } from "react";
+import React from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";

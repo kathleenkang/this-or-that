@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import ShadowSpeechBubble from "./ShadowSpeechBubble";
 
-export default function PostMenuButton({ onClick, icon, text, isNew }) {
+type Props = {
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  icon: string;
+  text: string;
+  isNew: boolean;
+};
+
+export default function PostMenuButton({ onClick, icon, text, isNew }: Props) {
   const [hovered, setHovered] = useState(false);
   const [showSpeechBubble, setShowSpeechBubble] = useState(false);
 

@@ -2,10 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import PostList from "../components/PostList";
 import Link from "next/link";
+import { Post } from "../types/global";
 
 function mypage() {
-  const [posts, setPosts] = useState(null);
-  const [uid, setUid] = useState(null);
+  const [posts, setPosts] = useState<Post[] | null>(null);
+  const [uid, setUid] = useState<string | null>(null);
 
   const fetchPosts = async () => {
     const uid = await localStorage.getItem("uid");

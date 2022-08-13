@@ -9,29 +9,36 @@ import { useRouter } from "next/router";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { Post, Vote } from "../types/global";
+import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
 
-function Post({ post, isNew }) {
+type Props = {
+  post: Post;
+  isNew: boolean;
+};
+
+function Post({ post, isNew }: Props) {
   const [myPost, setMyPost] = useState(post);
   const [successMsg, setSuccessMsg] = useState(false);
-  const [userId, setUserId] = useState(null);
+  const [userId, setUserId] = useState<string | null>(null);
 
-  const voteByUser = myPost.votes.find((vote) => vote.uid == userId);
+  const voteByUser = myPost.votes.find((vote: Vote) => vote.uid == userId);
   const selectedIndex = voteByUser ? voteByUser.selectedIndex : null;
 
   const getOrCreateUid = () => {
-    let uid = localStorage.getItem("uid");
+    let uid: string | null = localStorage.getItem("uid");
     if (uid) {
       setUserId(uid);
       return;
     }
 
-    uid = ObjectID();
+    uid = ObjectID().str;
     localStorage.setItem("uid", uid);
     setUserId(uid);
     return;
   };
 
-  const voteRequest = (action, index) => {
+  const voteRequest = (action: string, index?: number) => {
     axios
       .patch(`/api/posts/${myPost._id}/vote`, {
         selectedIndex: index,
@@ -47,8 +54,7 @@ function Post({ post, isNew }) {
       });
   };
 
-  const vote = (index) => {
-    console.log("vote!", index);
+  const vote = (index: number) => {
     voteRequest("vote", index);
   };
 
@@ -136,7 +142,7 @@ function Post({ post, isNew }) {
   const [disabled, setDisabled] = useState(false);
 
   const renderTags = () => {
-    return myPost.tags.map((tag, i) => (
+    return myPost.tags.map((tag: string, i: number) => (
       <Link href={`/?tag=${tag}`} key={`tag-${post._id}-${i}`}>
         <a className="inline-block mr-2.5 mb-1 bg-gray-100	text-gray-500 px-3 py-1 rounded-full cursor-pointer whitespace-nowrap">
           <span className="pr-0.5">#</span>
@@ -146,12 +152,12 @@ function Post({ post, isNew }) {
     ));
   };
 
-  const renderMenuButton = (menuButton, i) => {
+  const renderMenuButton = (menuButton: ReactJSXElement, i: number) => {
     if (sameUser || i == 0) {
       return (
         <div
           className="w-8 align-middle flex justify-center"
-          key={`menu-btn-${post._uid}-${i}`}
+          key={`menu-btn-${post.uid}-${i}`}
         >
           {menuButton}
         </div>
@@ -191,7 +197,7 @@ function Post({ post, isNew }) {
                     }
                     vote(0);
                   }
-                : null
+                : undefined
             }
             post={myPost}
             index={0}
@@ -214,7 +220,7 @@ function Post({ post, isNew }) {
                     }
                     vote(1);
                   }
-                : null
+                : undefined
             }
             post={myPost}
             index={1}
@@ -234,7 +240,7 @@ function Post({ post, isNew }) {
 
             {[
               <PostMenuButton
-                onClick={(e) => {
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                   e.preventDefault();
                   navigator.clipboard
                     .writeText(`${process.env.HOST}/posts/${myPost._id}`)
@@ -248,15 +254,24 @@ function Post({ post, isNew }) {
                 icon={"🔗"}
                 text={"공유"}
                 isNew={isNew}
+                key="share-btn"
               />,
 
-              <PostMenuButton onClick={editPost} icon={"🔧"} text={"수정"} />,
+              <PostMenuButton
+                onClick={editPost}
+                icon={"🔧"}
+                text={"수정"}
+                isNew={false}
+                key="edit-btn"
+              />,
               <PostMenuButton
                 onClick={() => {
                   setModalOpen(true);
                 }}
                 icon={"🗑"}
                 text={"삭제"}
+                isNew={false}
+                key="delete-btn"
               />,
             ].map(renderMenuButton)}
           </div>

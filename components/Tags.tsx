@@ -8,23 +8,12 @@ import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/material";
 import axios from "axios";
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "rgb(22 163 74)",
-    },
-    background: {
-      default: "rgb(243 244 246)",
-    },
-  },
-});
-
-type TagsProps = {
+type Props = {
   tags: string[];
   setTags: Dispatch<string[]>;
 };
 
-export default function Tags({ tags, setTags }: TagsProps) {
+export default function Tags({ tags, setTags }: Props) {
   const [showPlaceholder, setShowPlaceholder] = useState(true);
   const [options, setOptions] = useState([
     "밸런스게임",
@@ -34,6 +23,17 @@ export default function Tags({ tags, setTags }: TagsProps) {
     "디자인",
     "오늘뭐먹지?",
   ]);
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "rgb(22 163 74)",
+      },
+      background: {
+        default: "rgb(243 244 246)",
+      },
+    },
+  });
 
   useEffect(() => {
     (async () => {
@@ -90,7 +90,6 @@ export default function Tags({ tags, setTags }: TagsProps) {
             />
           )}
           onChange={(event, values) => {
-            // onChange={(values) => {
             setTags(values);
             setShowPlaceholder(false);
           }}

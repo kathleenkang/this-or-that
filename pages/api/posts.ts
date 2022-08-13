@@ -1,9 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../lib/dbConnect";
+import { Post as PostType } from "../../types/global";
 import Post from "../../models/Post";
 
 type Data = {
-  name: string;
+  success: boolean;
+  posts?: PostType[];
+  post?: PostType;
 };
 
 export default async function handler(
@@ -14,8 +17,6 @@ export default async function handler(
 
   if (req.method == "GET") {
     try {
-      console.log(req.query.uid);
-
       const posts = await Post.find(
         req.query.uid
           ? { uid: req.query.uid }
@@ -29,7 +30,6 @@ export default async function handler(
       res.status(400).json({ success: false });
     }
   } else if (req.method == "POST") {
-    console.log(req.body);
     try {
       const post = await Post.create(
         req.body

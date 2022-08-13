@@ -6,8 +6,13 @@ import UploadButton from "../components/UploadButton";
 
 import ObjectID from "bson-objectid";
 import Tags from "./Tags";
+import { Option, Post } from "../types/global";
 
-function PostForm({ post }) {
+type Props = {
+  post?: Post;
+};
+
+function PostForm({ post }: Props) {
   const router = useRouter();
 
   const [type, setType] = useState(post ? post.type : "image");
@@ -31,18 +36,20 @@ function PostForm({ post }) {
           },
         ]
   );
-  const [tags, setTags] = useState(post && post.tags ? post.tags : []);
+  const [tags, setTags] = useState<string[]>(
+    post && post.tags ? post.tags : []
+  );
 
-  const [itemsAlert, setItemsAlert] = useState(false);
-  const [imageItemsAlert, setImageItemsAlert] = useState(false);
+  const [itemsAlert, setItemsAlert] = useState<boolean>(false);
+  const [imageItemsAlert, setImageItemsAlert] = useState<boolean>(false);
 
-  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-  const [letterCount, setLetterCount] = React.useState(
+  const [letterCount, setLetterCount] = useState<number>(
     post ? post.title.length : 0
   );
 
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
   };
 
@@ -51,8 +58,12 @@ function PostForm({ post }) {
     attribute: string,
     newValue: string
   ) => {
-    let newOptions = [...options];
-    newOptions[index][attribute] = newValue;
+    let newOptions: Option[] = [...options];
+    if (attribute == "imageUrl") {
+      newOptions[index].imageUrl = newValue;
+    } else if (attribute == "caption") {
+      newOptions[index].caption = newValue;
+    }
     setOptions(newOptions);
     if (newOptions[0]["imageUrl"] && newOptions[1]["imageUrl"]) {
       setImageItemsAlert(false);
@@ -60,18 +71,18 @@ function PostForm({ post }) {
   };
 
   const getOrCreateUid = () => {
-    let uid = localStorage.getItem("uid");
+    let uid: string | null = localStorage.getItem("uid");
     if (uid) {
       return uid;
     }
 
-    uid = ObjectID();
+    uid = ObjectID().str;
     localStorage.setItem("uid", uid);
 
     return uid;
   };
 
-  const submitPost = (submitType) => {
+  const submitPost = (submitType: string) => {
     const body = {
       title: title && title.trim().length !== 0 ? title : "골라줘!",
       type: submitType,

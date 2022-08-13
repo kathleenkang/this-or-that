@@ -1,6 +1,13 @@
+import { GetServerSidePropsContext } from "next";
 import Post from "../../components/Post";
+import { Post as PostType } from "../../types/global";
 
-export default function ShowPost({ post, isNew }) {
+type Props = {
+  post: PostType;
+  isNew: boolean;
+};
+
+export default function ShowPost({ post, isNew }: Props) {
   return (
     <div>
       <Post post={post} isNew={isNew} />
@@ -8,8 +15,11 @@ export default function ShowPost({ post, isNew }) {
   );
 }
 
-export async function getServerSideProps({ params, query }) {
-  const res = await fetch(`${process.env.HOST}/api/posts/${params.pid}`);
+export async function getServerSideProps({
+  params,
+  query,
+}: GetServerSidePropsContext) {
+  const res = await fetch(`${process.env.HOST}/api/posts/${params!.pid}`);
   const data = await res.json();
 
   return {

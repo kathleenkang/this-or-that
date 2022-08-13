@@ -1,17 +1,13 @@
-import React, { useState } from "react";
+import React, { Dispatch, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 350,
-  bgcolor: "background.paper",
-  boxShadow: 24,
-  p: 4,
+type Props = {
+  handleSubmit: () => void;
+  modalOpen: boolean;
+  setModalOpen: Dispatch<boolean>;
+  submitPost: (submitType: string) => void;
 };
 
 export default function UploadButton({
@@ -19,7 +15,18 @@ export default function UploadButton({
   modalOpen,
   setModalOpen,
   submitPost,
-}) {
+}: Props) {
+  const style = {
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 350,
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    p: 4,
+  };
+
   return (
     <div>
       <button
