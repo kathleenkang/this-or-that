@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { GetServerSidePropsContext } from "next";
 import PostForm from "../../../components/PostForm";
 import { Post } from "../../../types/global";
 
