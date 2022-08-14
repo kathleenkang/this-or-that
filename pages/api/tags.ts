@@ -3,7 +3,8 @@ import dbConnect from "../../lib/dbConnect";
 import Post from "../../models/Post";
 
 type Data = {
-  name: string;
+  success: boolean;
+  tags?: string[];
 };
 
 export default async function handler(

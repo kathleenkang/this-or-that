@@ -2,13 +2,13 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
-  name: string;
+  success: boolean;
+  voteCount: number;
 };
 
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  // console.log(req.method);
-  res.status(200).json({ voteCount: 130 });
+  res.status(200).json({ success: true, voteCount: 130 });
 }

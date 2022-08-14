@@ -1,9 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../lib/dbConnect";
+import { Post as PostType } from "../../../types/global";
 import Post from "../../../models/Post";
 
 type Data = {
-  name: string;
+  success: boolean;
+  post?: PostType;
 };
 
 export default async function handler(

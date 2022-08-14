@@ -5,25 +5,14 @@ import { useRouter } from "next/router";
 import UploadButton from "./UploadButton";
 
 import ObjectID from "bson-objectid";
-import Tags from "./Tags";
-import { OptionUnstyledProps } from "@mui/base";
+import TagInput from "./TagInput";
+import { Option, Post } from "../types/global";
 
-type PostProps = {
-  _id: string;
-  type: string;
-  title: string;
-  // options: Object;
-  options: {
-    imageUrl: string | null;
-    caption: string | null;
-  }[];
-  tags: [string];
+type Props = {
+  post?: Post;
 };
 
-// function PostForm({ post }) {
-function PostForm({ post }: { post: PostProps }) {
-  // function PostForm({ post }: object) {
-  // function PostForm({ post }: { post: Object }) {
+function PostForm({ post }: Props) {
   const router = useRouter();
 
   const [type, setType] = useState(post ? post.type : "image");
@@ -42,19 +31,19 @@ function PostForm({ post }: { post: PostProps }) {
           },
         ]
   );
-  const [tags, setTags] = useState(post && post.tags ? post.tags : []);
+  const [tags, setTags] = useState<string[]>(
+    post && post.tags ? post.tags : []
+  );
 
-  const [itemsAlert, setItemsAlert] = useState(false);
-  const [imageItemsAlert, setImageItemsAlert] = useState(false);
+  const [itemsAlert, setItemsAlert] = useState<boolean>(false);
+  const [imageItemsAlert, setImageItemsAlert] = useState<boolean>(false);
 
-  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-  const [letterCount, setLetterCount] = React.useState(
+  const [letterCount, setLetterCount] = useState<number>(
     post ? post.title.length : 0
   );
 
-  // const handleTitleChange = () => {
-  // const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
   };
@@ -71,9 +60,13 @@ function PostForm({ post }: { post: PostProps }) {
     attribute: string,
     newValue: string
   ) => {
-    // const handleOptionsChange = (props: handleOptionsChangeProps) => {
-    let newOptions = [...options];
-    newOptions[index][attribute] = newValue;
+    let newOptions: Option[] = [...options];
+    if (attribute == "imageUrl") {
+      newOptions[index].imageUrl = newValue;
+    } else if (attribute == "caption") {
+      newOptions[index].caption = newValue;
+    }
+
     setOptions(newOptions);
     if (newOptions[0]["imageUrl"] && newOptions[1]["imageUrl"]) {
       setImageItemsAlert(false);
@@ -81,12 +74,12 @@ function PostForm({ post }: { post: PostProps }) {
   };
 
   const getOrCreateUid = () => {
-    let uid = localStorage.getItem("uid");
+    let uid: string | null = localStorage.getItem("uid");
     if (uid) {
       return uid;
     }
 
-    uid = ObjectID();
+    uid = ObjectID().str;
     localStorage.setItem("uid", uid);
 
     return uid;
@@ -224,7 +217,7 @@ function PostForm({ post }: { post: PostProps }) {
       </div>
 
       <div className="my-10">
-        <Tags tags={tags} setTags={setTags} />
+        <TagInput tags={tags} setTags={setTags} />
       </div>
 
       <div className="flex justify-end pb-4 items-center">

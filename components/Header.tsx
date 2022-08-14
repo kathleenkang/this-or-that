@@ -20,7 +20,7 @@ function Header() {
             <div className="w-10 md:hidden">
               <Link href="/">
                 <a>
-                  <Image src={logoImg} />
+                  <Image src={logoImg} alt="Logo Mobile" />
                 </a>
               </Link>
             </div>
@@ -28,7 +28,7 @@ function Header() {
             <div className="hidden md:block w-72">
               <Link href="/">
                 <a>
-                  <Image src={titleImg} width={230} height={37.72} />
+                  <Image src={titleImg} width={230} height={37.72} alt="Logo" />
                 </a>
               </Link>
             </div>
