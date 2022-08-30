@@ -51,7 +51,7 @@ function OptionBoxDisplay({
               href={word}
               target="_blank"
               rel="noreferrer"
-              className="nested-link text-orange-500 hover:underline underline-offset-4"
+              className="nested-link text-gray-500 underline underline-offset-4 hover:text-orange-500"
               onClick={(e) => {
                 e.stopPropagation();
               }}
