@@ -13,7 +13,7 @@ function about() {
       >
         <span className="font-bold pr-1">This or That [디오댓]</span>은
         결정장애를 가진 사람들을 위한{" "}
-        <span className="pr-1">'소셜 투표 플랫폼'</span>
+        <span className="pr-1">&quot;소셜 투표 플랫폼&quot;</span>
         입니다. <br />
         밸런스 게임부터 소개팅룩 조언까지⁠—
         <br />

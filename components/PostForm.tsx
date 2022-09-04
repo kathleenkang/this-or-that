@@ -48,13 +48,6 @@ function PostForm({ post }: Props) {
     setTitle(e.target.value);
   };
 
-  // type handleOptionsChangeProps = {
-  //   index: number;
-  //   attribute: string;
-  //   newValue: string;
-  // };
-
-  // const handleOptionsChange = () => {
   const handleOptionsChange = (
     index: number,
     attribute: string,
@@ -79,13 +72,14 @@ function PostForm({ post }: Props) {
       return uid;
     }
 
-    uid = ObjectID().str;
+    uid = ObjectID().toHexString();
     localStorage.setItem("uid", uid);
 
     return uid;
   };
 
   const submitPost = (submitType: string) => {
+    const uid = getOrCreateUid();
     const body = {
       title: title && title.trim().length !== 0 ? title : "골라줘!",
       type: submitType,
@@ -96,7 +90,7 @@ function PostForm({ post }: Props) {
               return { caption: option.caption };
             }),
       tags: tags,
-      uid: getOrCreateUid(),
+      uid: ObjectID.createFromHexString(uid),
     };
 
     if (post) {
