@@ -159,7 +159,7 @@ function Post({ post, isNew }: Props) {
       <div className="md:w-full">
         <div className="mb-4 md:mb-6">
           <div className="flex">
-            <div className="text-3xl font-bold pr-2.5 italic">Q.</div>
+            <div className="text-3xl font-bold pr-1.5 italic">Q.</div>
 
             <Link href={`/posts/${myPost._id}`}>
               <a
