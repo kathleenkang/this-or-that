@@ -48,6 +48,7 @@ function OptionBoxDisplay({
         return (
           <>
             <a
+              key={`${post._id}-${word}-${i}`}
               href={word}
               target="_blank"
               rel="noreferrer"
