@@ -79,7 +79,7 @@ function PostForm({ post }: Props) {
       return uid;
     }
 
-    uid = ObjectID().str;
+    uid = ObjectID().toHexString();
     localStorage.setItem("uid", uid);
 
     return uid;

@@ -32,7 +32,7 @@ function Post({ post, isNew }: Props) {
       return;
     }
 
-    uid = ObjectID().str;
+    uid = ObjectID().toHexString();
     localStorage.setItem("uid", uid);
     setUserId(uid);
     return;
