@@ -70,7 +70,9 @@ function Layout({ children }: React.PropsWithChildren<{}>) {
         />
       </Head>
       <Header />
-      <div className="px-8 py-6 max-w-7xl mx-auto md:py-8">{children}</div>
+      <div className="px-5 py-6 max-w-7xl mx-auto md:px-8 md:py-8">
+        {children}
+      </div>
     </>
   );
 }
