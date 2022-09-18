@@ -46,22 +46,21 @@ function OptionBoxDisplay({
       let regex = new RegExp(expression);
       if (word.match(regex)) {
         return (
-          <>
-            <a
-              href={word}
-              target="_blank"
-              rel="noreferrer"
-              className="nested-link text-gray-500 underline underline-offset-4 hover:text-orange-500"
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-              onMouseEnter={(e) => {
-                setHovered(false);
-              }}
-            >
-              {`${word}${caption.length == i - 1 ? "" : " "}`}
-            </a>
-          </>
+          <a
+            key={`${post._id}-${word}-${i}`}
+            href={word}
+            target="_blank"
+            rel="noreferrer"
+            className="nested-link text-gray-500 underline underline-offset-4 hover:text-orange-500"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            onMouseEnter={(e) => {
+              setHovered(false);
+            }}
+          >
+            {`${word}${caption.length == i - 1 ? "" : " "}`}
+          </a>
         );
       }
       return (

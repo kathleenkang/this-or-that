@@ -8,6 +8,8 @@ import ObjectID from "bson-objectid";
 import TagInput from "./TagInput";
 import { Option, Post } from "../types/global";
 
+import { getOrCreateUid } from "../lib/utils";
+
 type Props = {
   post?: Post;
 };
@@ -64,18 +66,6 @@ function PostForm({ post }: Props) {
     if (newOptions[0]["imageUrl"] && newOptions[1]["imageUrl"]) {
       setImageItemsAlert(false);
     }
-  };
-
-  const getOrCreateUid = () => {
-    let uid: string | null = localStorage.getItem("uid");
-    if (uid) {
-      return uid;
-    }
-
-    uid = ObjectID().toHexString();
-    localStorage.setItem("uid", uid);
-
-    return uid;
   };
 
   const submitPost = (submitType: string) => {

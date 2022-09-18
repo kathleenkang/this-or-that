@@ -4,23 +4,12 @@ import axios from "axios";
 import { Post } from "../types/global";
 import PostList from "../components/PostList";
 import Link from "next/link";
-import ObjectID from "bson-objectid";
+
+import { getOrCreateUid } from "../lib/utils";
 
 function MyPosts() {
   const [posts, setPosts] = useState<Post[] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-
-  const getOrCreateUid = () => {
-    let uid: string | null = localStorage.getItem("uid");
-    if (uid) {
-      return uid;
-    }
-
-    uid = ObjectID().toHexString();
-    localStorage.setItem("uid", uid);
-
-    return uid;
-  };
 
   const fetchPosts = async () => {
     setLoading(true);

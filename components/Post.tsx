@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import OptionBoxDisplay from "./OptionBoxDisplay";
-import ObjectID from "bson-objectid";
 import Link from "next/link";
 import PostMenuButton from "./PostMenuButton";
 import { useRouter } from "next/router";
@@ -11,6 +10,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Post, Vote } from "../types/global";
 import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
+
+import { getOrCreateUid } from "../lib/utils";
 
 type Props = {
   post: Post;
@@ -25,20 +26,9 @@ function Post({ post, isNew }: Props) {
   const voteByUser = myPost.votes.find((vote: Vote) => vote.uid == userId);
   const selectedIndex = voteByUser ? voteByUser.selectedIndex : null;
 
-  const getOrCreateUid = () => {
-    let uid: string | null = localStorage.getItem("uid");
-    if (uid) {
-      setUserId(uid);
-      return;
-    }
-
-    uid = ObjectID().toHexString();
-    localStorage.setItem("uid", uid);
-    setUserId(uid);
-    return;
-  };
-
   const voteRequest = (action: string, index?: number) => {
+    console.log(userId);
+
     axios
       .patch(`/api/posts/${myPost._id}/vote`, {
         selectedIndex: index,
@@ -133,7 +123,7 @@ function Post({ post, isNew }: Props) {
   };
 
   useEffect(() => {
-    getOrCreateUid();
+    setUserId(getOrCreateUid());
   }, []);
 
   const sameUser = userId == myPost.uid;
