@@ -157,13 +157,13 @@ function Post({ post, isNew }: Props) {
   return (
     <div className="mx-auto">
       <div className="md:w-full">
-        <div className="mb-6 md:mb-7">
+        <div className="mb-4 md:mb-6">
           <div className="flex">
             <div className="text-3xl font-bold pr-2.5 italic">Q.</div>
 
             <Link href={`/posts/${myPost._id}`}>
               <a
-                className="text-xl font-semibold pt-1.5"
+                className="text-xl font-medium pt-2 leading-6 md:pt-1 md:leading-8 md:font-semibold"
                 style={{ wordBreak: "keep-all" }}
               >
                 {myPost.title}
@@ -171,7 +171,7 @@ function Post({ post, isNew }: Props) {
             </Link>
           </div>
 
-          <div className="mt-5 md:hidden">{renderTags()}</div>
+          <div className="mt-4 md:hidden">{renderTags()}</div>
         </div>
 
         <div className="md:flex items-stretch">
@@ -194,7 +194,7 @@ function Post({ post, isNew }: Props) {
             sameUser={sameUser}
           />
 
-          <div className="text-3xl font-bold m-5 justify-center tracking-wider italic text-green-600 flex items-center">
+          <div className="text-3xl font-bold m-4 justify-center tracking-wider italic text-green-600 flex items-center md:m-5">
             or
           </div>
 
@@ -218,7 +218,7 @@ function Post({ post, isNew }: Props) {
           />
         </div>
 
-        <div className="flex justify-end mt-7 align-center md:justify-between relative">
+        <div className="flex justify-end mt-6 align-center md:justify-between relative">
           <div className="hidden text-center md:block">{renderTags()}</div>
           <div className="flex items-center">
             {successMsg ? (

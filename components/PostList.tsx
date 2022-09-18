@@ -16,7 +16,7 @@ export default function PostList({ posts }: Props) {
     return (
       <div
         key={`post-${i}-${post._id}`}
-        className="border-b-2 border-black-900 pt-8 pb-8 first:pt-0 last:border-none"
+        className="border-b-2 border-black-900 pt-4 pb-5 first:pt-0 last:border-none md:pt-6"
       >
         <Post post={post} isNew={false} />
       </div>

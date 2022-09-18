@@ -86,7 +86,7 @@ function OptionBoxDisplay({
       onMouseLeave={() => {
         setHovered(false);
       }}
-      className={`bg-gray-200 w-full p-4 rounded-xl grow flex flex-col justify-between
+      className={`bg-gray-200 w-full px-3.5 pb-3.5 pt-1 rounded-xl grow flex flex-col justify-between
       ${sameUser ? "hover:cursor-default" : "hover:cursor-pointer"}
       ${
         index == selectedIndex
@@ -97,7 +97,8 @@ function OptionBoxDisplay({
       }
       `}
     >
-      <div className="flex justify-between items-stretch mb-3">
+      {/* <div className="flex justify-between items-stretch mb-0.5"> */}
+      <div className="flex justify-between items-stretch mt-0.5 mb-1">
         <div
           className={`font-bold italic text-green-600 flex`}
           style={{ fontSize: "30px", lineHeight: "unset" }}
@@ -108,7 +109,7 @@ function OptionBoxDisplay({
         {resultDisplay()}
       </div>
       <div
-        className={`px-3.5 pt-[18px] pb-[16px] bg-white rounded-lg w-full flex flex-col grow justify-center`}
+        className={`px-3 pt-[12px] pb-[10px] bg-white rounded-lg w-full flex flex-col grow justify-center`}
       >
         {option.imageUrl ? (
           <div className="grow flex">
@@ -122,7 +123,7 @@ function OptionBoxDisplay({
         {option.caption ? (
           <div
             className={`text-xl inline-block w-full text-center ${
-              option.imageUrl ? "mt-5 text-gray-500 text-[17px] px-2" : ""
+              option.imageUrl ? "mt-2.5 text-gray-500 text-[17px] px-2" : ""
             }`}
             style={
               option.caption.split(" ").filter((word: string) => {
