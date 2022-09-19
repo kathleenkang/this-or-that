@@ -1,24 +1,14 @@
-# Next.js + Tailwind CSS Example
+## MBTI 빙고
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+### About
+[MBTI 빙고](https://www.mbtibingo.com/)는 빙고 포맷의 인터랙티브 콘텐츠로 자신의 ‘진짜’ MBTI를 알아보는 웹앱입니다.  
+흔히 잘못 분류되는 성격유형들을 분석한 데이터를 기반으로 자신의 MBTI와 mistype의 빙고 선택 개수를 비교하여 일치도가 가장 높은 성격유형을 찾아주는 형식으로 진행됩니다.  이때, mistype에 해당하는 성격유형들은 마스킹 처리하여 '미스테리 빙고'를 플레이하도록 연출함으로써 사용자의 흥미를 유발했습니다. 배포 첫날 350명이 넘게 이용하고 현재까지 8천 명이 넘는 유저가 이용했으며, 5만 뷰가 넘는 조회수를 기록하는 등의 바이럴을 탄 바 있습니다. 주로 카톡을 통해 공유되었으며, 특정 커뮤니티에서는 실시간 인기글에 올랐습니다.
 
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-# or
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
-# this-or-that
+### Engineering Highlight
+- AWS S3, AWS CloudFront, MongoDB Atlas 등 다양한 클라우드 서비스를 활용했습니다.
+- React Router와 Context를 통해 페이지 간 상태를 관리했습니다.
+- SNS로 바이럴하게 퍼질 수 있도록 기획·디자인·개발했습니다.
+    - 회원가입이 전환율을 떨어뜨릴 거라 판단하여, 브라우저 기반 uid 생성 및 local storage에 보관하기로 결정
+    - 결과 페이지에 공유 기능 추가
+    - 모바일 기준으로 디자인 및 개발
+    - 대부분 카톡, 인스타그램 등의 In-App 브라우저로 진입한다는 점을 고려하여 테스트
