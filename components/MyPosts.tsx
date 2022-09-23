@@ -38,7 +38,7 @@ function MyPosts() {
           <div>
             지금{" "}
             <Link href="/postupload">
-              <a className="font-medium text-green-500 underline underline-offset-2 md:hover:text-orange-500">
+              <a className="font-medium text-green-500 underline underline-offset-4 md:hover:text-orange-500">
                 첫 투표를 만들어보세요!
               </a>
             </Link>

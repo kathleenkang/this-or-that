@@ -76,7 +76,7 @@ function PictureUpload({ index, handleOptionsChange, imageUrl }: Props) {
             onChange={handleChange}
             className="opacity-0 absolute bottom-[7px] left-[-170px] text-lg hover:cursor-pointer"
           />
-          <div className="text-orange-500 font-medium underline underline-offset-2 my-3">
+          <div className="text-orange-500 font-medium underline underline-offset-4 my-3">
             이미지 변경하기
           </div>
         </label>

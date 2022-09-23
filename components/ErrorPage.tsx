@@ -37,7 +37,7 @@ function ErrorPage() {
           주소가 잘못 입력되었거나 삭제되어 요청하신 페이지를 찾을 수 없습니다.
         </div>
         <Link href="/">
-          <a className="text-orange-500 font-medium underline underline-offset-2">
+          <a className="text-orange-500 font-medium underline underline-offset-4">
             홈페이지 피드
           </a>
         </Link>

@@ -5,6 +5,7 @@ import Post from "./Post";
 
 import Image from "next/image";
 import loadingSpinner from "../public/images/inprogress.gif";
+import Link from "next/link";
 
 type Props = {
   posts: PostType[] | null;
@@ -15,6 +16,7 @@ export default function PostList({ posts, tag }: Props) {
   const [cursor, setCursor] = useState<number>(1);
   const [myPosts, setMyPosts] = useState<PostType[] | null>(posts);
   const [loading, setLoading] = useState<boolean>(false);
+  const [hasNextPage, setHasNextPage] = useState<boolean>(true);
 
   const renderPost = (post: PostType, i: number) => {
     return (
@@ -29,8 +31,9 @@ export default function PostList({ posts, tag }: Props) {
 
   const handleScroll = () => {
     if (
+      hasNextPage === true &&
       window.innerHeight + document.documentElement.scrollTop + 1 >=
-      document.documentElement.scrollHeight
+        document.documentElement.scrollHeight
     ) {
       fetchPosts();
     }
@@ -42,8 +45,6 @@ export default function PostList({ posts, tag }: Props) {
   }, [cursor]);
 
   const fetchPosts = () => {
-    console.log(cursor);
-
     setLoading(true);
     let url = `${process.env.HOST}/api/posts?cursor=${cursor}`;
     if (tag) {
@@ -52,11 +53,20 @@ export default function PostList({ posts, tag }: Props) {
 
     axios
       .get(url)
+
       .then((response) => {
         setMyPosts(response.data.posts);
         setCursor(cursor + 1);
         setLoading(false);
+        if (
+          response.data.posts.find(
+            (post: any) => post._id === "62cae2a5932dd8eede9bc626"
+          )
+        ) {
+          setHasNextPage(false);
+        }
       })
+
       .catch((error) => {
         console.log(error);
         setLoading(false);
@@ -77,6 +87,18 @@ export default function PostList({ posts, tag }: Props) {
           />
         </div>
       ) : null}
+
+      {hasNextPage ? null : (
+        <div className="pt-8 text-center leading-7">
+          디오댓의 모든 포스트 섭렵 완료! 🥳
+          <br />
+          <Link href="/postupload">
+            <a className="text-lg font-medium text-green-500 underline underline-offset-4 md:hover:text-orange-500">
+              지금 새로운 투표를 올려보세요!
+            </a>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
