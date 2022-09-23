@@ -63,7 +63,7 @@ export default function UploadButton({
             </button>
 
             <a
-              className="block text-center underline underline-offset-2 text-orange-500"
+              className="block text-center underline underline-offset-4 text-orange-500"
               onClick={() => {
                 setModalOpen(false);
               }}

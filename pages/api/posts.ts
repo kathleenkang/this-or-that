@@ -23,8 +23,11 @@ export default async function handler(
           : req.query.tag
           ? { tags: req.query.tag }
           : {}
-      );
-      res.status(201).json({ success: true, posts: posts });
+      )
+        .sort({ _id: -1 })
+        // .limit(5 * (parseInt(req.query.cursor) + 1));
+        .limit(5 * (parseInt(query.cursor) + 1));
+      res.status(201).json({ success: true, posts: posts.reverse() });
     } catch (error) {
       console.log(error);
       res.status(400).json({ success: false });

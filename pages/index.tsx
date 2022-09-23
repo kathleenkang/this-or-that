@@ -16,14 +16,16 @@ export default function Home({ posts, tag }: Props) {
           {tag}
         </h1>
       ) : null}
-      <PostList posts={posts} />
+      <PostList posts={posts} tag={tag} />
     </>
   );
 }
 
 export async function getServerSideProps({ query }: GetServerSidePropsContext) {
   const res = await fetch(
-    `${process.env.HOST}/api/posts${query.tag ? `?tag=${query.tag}` : ""}`
+    `${process.env.HOST}/api/posts?cursor=0${
+      query.tag ? `&tag=${query.tag}` : ""
+    }`
   );
   const data = await res.json();
 

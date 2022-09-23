@@ -105,7 +105,7 @@ function Post({ post, isNew }: Props) {
             </button>
 
             <a
-              className="block text-center underline underline-offset-2 text-green-500"
+              className="block text-center underline underline-offset-4 text-green-500"
               onClick={() => {
                 setModalOpen(false);
               }}
