@@ -13,13 +13,8 @@ type Props = {
 
 export default function PostList({ posts, tag }: Props) {
   const [cursor, setCursor] = useState<number>(1);
-  const [myPosts, setMyPosts] = useState<PostType[]>(posts);
+  const [myPosts, setMyPosts] = useState<PostType[] | null>(posts);
   const [loading, setLoading] = useState<boolean>(false);
-
-  // post들이 load 되는 동안은 blank 보여줌
-  // if (!myPosts) {
-  //   return null;
-  // }
 
   const renderPost = (post: PostType, i: number) => {
     return (
@@ -70,7 +65,7 @@ export default function PostList({ posts, tag }: Props) {
 
   return (
     <div className="post-list" onScroll={handleScroll}>
-      {myPosts.slice(0).reverse().map(renderPost)}
+      {myPosts && myPosts.slice(0).reverse().map(renderPost)}
 
       {loading ? (
         <div className="flex justify-center py-4">
