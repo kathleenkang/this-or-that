@@ -8,7 +8,7 @@ import loadingSpinner from "../public/images/inprogress.gif";
 
 type Props = {
   posts: PostType[] | null;
-  tag: string;
+  tag?: string;
 };
 
 export default function PostList({ posts, tag }: Props) {

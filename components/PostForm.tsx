@@ -9,6 +9,7 @@ import TagInput from "./TagInput";
 import { Option, Post } from "../types/global";
 
 import { getOrCreateUid } from "../lib/utils";
+import { TagSet } from "mongoose";
 
 type Props = {
   post?: Post;
