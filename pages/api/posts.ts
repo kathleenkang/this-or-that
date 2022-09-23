@@ -25,8 +25,7 @@ export default async function handler(
           : {}
       )
         .sort({ _id: -1 })
-        // .limit(5 * (parseInt(req.query.cursor) + 1));
-        .limit(5 * (parseInt(query.cursor) + 1));
+        .limit(10 * (parseInt(req.query.cursor) + 1));
       res.status(201).json({ success: true, posts: posts.reverse() });
     } catch (error) {
       console.log(error);
