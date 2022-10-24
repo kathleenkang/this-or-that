@@ -16,7 +16,7 @@ export default async function handler(
   if (req.method == "GET") {
     try {
       const tags = await Post.distinct("tags");
-      res.status(201).json({ success: true, tags: tags });
+      res.status(200).json({ success: true, tags: tags });
     } catch (error) {
       console.log(error);
       res.status(400).json({ success: false });

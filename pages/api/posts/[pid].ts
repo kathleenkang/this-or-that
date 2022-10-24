@@ -20,7 +20,7 @@ export default async function handler(
       const post = await Post.findOne({
         _id: pid,
       });
-      res.status(201).json({ success: true, post: post });
+      res.status(200).json({ success: true, post: post });
     } catch (error) {
       console.log(error);
       res.status(400).json({ success: false });
@@ -36,14 +36,14 @@ export default async function handler(
       post.tags = req.body.tags;
       post.save();
 
-      res.status(201).json({ success: true, post: post });
+      res.status(200).json({ success: true, post: post });
     } catch (error) {
       res.status(400).json({ success: false });
     }
   } else if (req.method == "DELETE") {
     try {
       await Post.deleteOne({ _id: pid });
-      res.status(201).json({ success: true });
+      res.status(204).json({ success: true });
     } catch (error) {
       res.status(400).json({ success: false });
     }

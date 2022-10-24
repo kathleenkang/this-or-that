@@ -21,7 +21,9 @@ export default async function handler(
       const post = await Post.findOne({
         _id: pid,
       });
-      const voteByOthers = post.votes.filter((vote: {uid: string}) => vote.uid != uid);
+      const voteByOthers = post.votes.filter(
+        (vote: { uid: string }) => vote.uid != uid
+      );
       if (req.body.action == "vote") {
         post.votes = [...voteByOthers, req.body];
       } else if (req.body.action == "unvote") {
@@ -29,7 +31,7 @@ export default async function handler(
       }
       post.save();
 
-      res.status(201).json({ success: true, post: post });
+      res.status(200).json({ success: true, post: post });
     } catch (error) {
       console.log(error);
       res.status(400).json({ success: false });
